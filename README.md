@@ -25,17 +25,17 @@ pir_upper = np.array([100, 255, 255], np.uint8)
 salak_lower = np.array([0, 34, 5], np.uint8)
 salak_upper = np.array([3, 200, 100], np.uint8)
 
-Dalam kode terdapat nilai "lower" dan "upper" untuk deteksi buah kelengkeng, pir, dan salak dalam ruang warna HSV. Berikut adalah penjelasan dari pembagian program
-
-Untuk deteksi buah kelengkeng:
+Dalam kode terdapat nilai "lower" dan "upper" untuk deteksi buah kelengkeng, pir, dan salak dalam ruang warna HSV.
+Penjelasan pada setiap buah yang ingin dideteksi:
+-) Untuk deteksi buah kelengkeng
 kelengkeng_lower = np.array([10, 100, 100], np.uint8) menentukan nilai "lower" untuk komponen Hue (H) sebesar 10, Saturation (S) sebesar 100, dan Value (V) sebesar 100.
 kelengkeng_upper = np.array([15, 200, 255], np.uint8) menentukan nilai "upper" untuk komponen Hue (H) sebesar 15, Saturation (S) sebesar 200, dan Value (V) sebesar 255.
 
-Untuk deteksi buah pir:
+-) Untuk deteksi buah pir
 pir_lower = np.array([26, 50, 70], np.uint8) menentukan nilai "lower" untuk komponen Hue (H) sebesar 26, Saturation (S) sebesar 50, dan Value (V) sebesar 70.
 pir_upper = np.array([100, 255, 255], np.uint8) menentukan nilai "upper" untuk komponen Hue (H) sebesar 100, Saturation (S) sebesar 255, dan Value (V) sebesar 255.
 
-Untuk deteksi buah salak:
+-) Untuk deteksi buah salak
 salak_lower = np.array([0, 34, 5], np.uint8) menentukan nilai "lower" untuk komponen Hue (H) sebesar 0, Saturation (S) sebesar 34, dan Value (V) sebesar 5.
 salak_upper = np.array([3, 200, 100], np.uint8) menentukan nilai "upper" untuk komponen Hue (H) sebesar 3, Saturation (S) sebesar 200, dan Value (V) sebesar 100.
 
@@ -47,19 +47,21 @@ dilated_pir_mask = cv2.dilate(pir_mask, kernel, iterations=1)
 kernel = np.ones((20,10), np.uint8)
 dilated_salak_mask = cv2.dilate(salak_mask, kernel, iterations=1)
 
-
 Pertama, membuat sebuah kernel dengan ukuran (20,10) menggunakan np.ones((20,10), np.uint8). Kernel ini berfungsi sebagai elemen struktur yang akan digunakan dalam operasi dilasi.
 Selanjutnya, melakukan operasi dilasi pada mask buah kelengkeng menggunakan cv2.dilate(kelengkeng_mask, kernel, iterations=1). kelengkeng_mask adalah mask atau citra biner yang diperoleh dari deteksi buah kelengkeng sebelumnya. Operasi dilasi dilakukan dengan menggunakan kernel yang telah dibuat sebelumnya dan dilakukan satu iterasi.
-Anda juga melakukan operasi dilasi pada mask buah pir dan salak menggunakan langkah yang sama. pir_mask dan salak_mask adalah mask atau citra biner yang diperoleh dari deteksi buah pir dan salak.
+Juga melakukan operasi dilasi pada mask buah pir dan salak menggunakan langkah yang sama. pir_mask dan salak_mask adalah mask atau citra biner yang diperoleh dari deteksi buah pir dan salak.
 
 
 kelengkeng = cv2.bitwise_and(img, img, mask=dilated_kelengkeng_mask)
 pir = cv2.bitwise_and(img, img, mask=dilated_pir_mask)
 salak = cv2.bitwise_and(img, img, mask=dilated_salak_mask)
 
-kelengkeng = cv2.bitwise_and(img, img, mask=dilated_kelengkeng_mask): Kode ini melakukan operasi bitwise AND antara citra asli (img) dan mask buah kelengkeng yang telah melalui proses dilasi (dilated_kelengkeng_mask). Operasi ini menghasilkan citra baru (kelengkeng) di mana piksel yang ada di dalam area buah kelengkeng pada mask akan diambil dari citra asli, sedangkan piksel di luar area tersebut akan dijadikan hitam (0).
-pir = cv2.bitwise_and(img, img, mask=dilated_pir_mask): Kode ini melakukan operasi bitwise AND antara citra asli (img) dan mask buah pir yang telah melalui proses dilasi (dilated_pir_mask). Operasi ini menghasilkan citra baru (pir) di mana piksel yang ada di dalam area buah pir pada mask akan diambil dari citra asli, sedangkan piksel di luar area tersebut akan dijadikan hitam (0).
-salak = cv2.bitwise_and(img, img, mask=dilated_salak_mask): Kode ini melakukan operasi bitwise AND antara citra asli (img) dan mask buah salak yang telah melalui proses dilasi (dilated_salak_mask). Operasi ini menghasilkan citra baru (salak) di mana piksel yang ada di dalam area buah salak pada mask akan diambil dari citra asli, sedangkan piksel di luar area tersebut akan dijadikan hitam (0).
+kelengkeng = cv2.bitwise_and(img, img, mask=dilated_kelengkeng_mask)
+-) Kode diatas melakukan operasi bitwise AND antara citra asli (img) dan mask buah kelengkeng yang telah melalui proses dilasi (dilated_kelengkeng_mask). Operasi ini menghasilkan citra baru (kelengkeng) di mana piksel yang ada di dalam area buah kelengkeng pada mask akan diambil dari citra asli, sedangkan piksel di luar area tersebut akan dijadikan hitam (0).
+pir = cv2.bitwise_and(img, img, mask=dilated_pir_mask)
+-) Kode diatas melakukan operasi bitwise AND antara citra asli (img) dan mask buah pir yang telah melalui proses dilasi (dilated_pir_mask). Operasi ini menghasilkan citra baru (pir) di mana piksel yang ada di dalam area buah pir pada mask akan diambil dari citra asli, sedangkan piksel di luar area tersebut akan dijadikan hitam (0).
+salak = cv2.bitwise_and(img, img, mask=dilated_salak_mask)
+-) Kode diatas melakukan operasi bitwise AND antara citra asli (img) dan mask buah salak yang telah melalui proses dilasi (dilated_salak_mask). Operasi ini menghasilkan citra baru (salak) di mana piksel yang ada di dalam area buah salak pada mask akan diambil dari citra asli, sedangkan piksel di luar area tersebut akan dijadikan hitam (0).
 
 
 fig, axs = plt.subplots(1,4,figsize=(8,5))
