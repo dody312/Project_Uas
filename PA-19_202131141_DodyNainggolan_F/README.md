@@ -8,9 +8,9 @@ numpy (diimpor sebagai np) adalah modul yang menyediakan dukungan untuk array da
 matplotlib.pyplot (diimpor sebagai plt) adalah modul yang digunakan untuk visualisasi data, termasuk grafik, plot, dan tampilan citra.
 
 
-img = cv2.imread('Image/buah.jpg')
+img = cv2.imread('buah.jpg')
 
-Kode img = cv2.imread('Image/buah.jpg') digunakan untuk membaca citra dengan nama file 'buah.jpg'. Fungsi cv2.imread() adalah fungsi dari modul OpenCV yang digunakan untuk membaca citra dari file.
+img = cv2.imread('buah.jpg'): kode ini digunakan untuk membaca citra dengan nama file 'buah.jpg'. Fungsi cv2.imread() adalah fungsi dari modul OpenCV yang digunakan untuk membaca citra dari file.
 
 
 hsv_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
